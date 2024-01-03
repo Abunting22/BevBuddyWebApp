@@ -1,0 +1,30 @@
+﻿@page "/"
+
+@inherits LoginLayout
+
+@inject HttpClient Http
+
+<h3>Register</h3>
+<EditForm Model="@newRegister" OnValidSubmit="RegistrationRequest">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="username" @bind-Value="newRegister.Username" />
+    <InputText id="password" @bind-Value="newRegister.Password" />
+    <InputText id="firstName" @bind-Value="newRegister.FirstName" />
+    <InputText id="lastName" @bind-Value="newRegister.LastName" />
+    <InputText id="email" @bind-Value="newRegister.Email" />
+
+
+    <button type="submit" class="btn btn-primary">Continue</button>
+
+</EditForm>
+
+@code {
+    private readonly NewRegister newRegister = new();
+
+    private async Task<HttpResponseMessage> RegistrationRequest()
+    {
+        return await Http.PostAsJsonAsync("api/RegisterUser", newRegister);
+    }
+}

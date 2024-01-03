@@ -1,0 +1,26 @@
+﻿@page "/Login"
+
+@inherits LoginLayout
+
+@inject HttpClient Http
+
+<h3>Login</h3>
+<EditForm Model="@newLogin" OnValidSubmit="LoginRequest">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <InputText id="username" @bind-Value="newLogin.Username"/>
+    <InputText id="password" @bind-Value="newLogin.Password" />
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+</EditForm>
+
+@code {
+    private readonly NewLogin newLogin = new();
+
+    private async Task<HttpResponseMessage> LoginRequest()
+    {
+        return await Http.PostAsJsonAsync("api/Login", newLogin);
+    }
+}
