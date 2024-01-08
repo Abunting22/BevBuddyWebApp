@@ -15,7 +15,7 @@ namespace BevBuddyWebApp.Server.Tests.Services
         // Change IResult to IActionResult => see approved answer: https://stackoverflow.com/questions/41292919/unit-testing-controller-methods-which-return-iactionresult
 
         private readonly IAuthRepository _authRepositoryStub = new Mock<IAuthRepository>().Object;
-        private readonly IJwtServices _jwtServicesStub = new Mock<IJwtServices>().Object;
+        private readonly IJwtService _jwtServicesStub = new Mock<IJwtService>().Object;
 
 
         [Fact]
@@ -58,7 +58,7 @@ namespace BevBuddyWebApp.Server.Tests.Services
                 .Setup(x => x.Login(It.IsAny<UserDto>()))
                 .ReturnsAsync(user);
 
-            var jwtServicesMock = new Mock<IJwtServices>();
+            var jwtServicesMock = new Mock<IJwtService>();
             jwtServicesMock
                 .Setup(x => x.GetJwt(It.IsAny<User>()))
                 .Returns("blah blah blah this is my Jwt Token");

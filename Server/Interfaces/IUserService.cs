@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BevBuddyWebApp.Server.Interfaces
 {
-    public interface IUserServices
+    public interface IUserService
     {
         public Task<User> GetUserInfo(string username);
 

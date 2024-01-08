@@ -1,6 +1,7 @@
 ﻿using BevBuddyWebApp.Server.Interfaces;
 using BevBuddyWebApp.Shared.Models;
 using Dapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BevBuddyWebApp.Server.Repositories
 {
@@ -13,20 +14,20 @@ namespace BevBuddyWebApp.Server.Repositories
             _baseRepository = baseRepository;
         }
 
-        public async Task<IResult> CreateNewBet(Bet bet)
+        public async Task<IActionResult> CreateNewBet(Bet bet)
         {
             const string sql = $"""
-                INSET INTO Bets (UserID, Bettor, Wager, Description, WagerDate)
+                INSERT INTO Bets (UserID, Bettor, Wager, Description, WagerDate)
                 VALUES (@UserID, @Bettor, @Wager, @Description, @WagerDate)
                 """;
 
             using var connection = _baseRepository.Connect();
-            await connection.QueryAsync(sql, bet);
+            await connection.ExecuteAsync(sql, bet);
 
-            return Results.Ok();
+            return new OkResult();
         }
 
-        public async Task<IResult> UpdateBetByBetID(Bet bet)
+        public async Task<IActionResult> UpdateBetByBetID(Bet bet)
         {
             const string sql = $"""
                 UPDATE Bets
@@ -37,7 +38,7 @@ namespace BevBuddyWebApp.Server.Repositories
             using var connection = _baseRepository.Connect();
             await connection.QueryAsync<Bet>(sql, bet);
 
-            return Results.Ok();
+            return new OkResult();
         }
 
         public async Task<Bet> ReturnAllBetsByUserID(User user)
@@ -68,7 +69,7 @@ namespace BevBuddyWebApp.Server.Repositories
             return returnBet;
         }
 
-        public async Task<IResult> DeleteBetByBetID(BetDto request)
+        public async Task<IActionResult> DeleteBetByBetID(BetDto request)
         {
             const string sql = $"""
                 DELETE Bet FROM Bets
@@ -78,7 +79,7 @@ namespace BevBuddyWebApp.Server.Repositories
             using var connection = _baseRepository.Connect();
             await connection.ExecuteAsync(sql, request);
 
-            return Results.Ok();
+            return new OkResult();
         }
     }
 }

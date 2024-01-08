@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BevBuddyWebApp.Server.Services
 {
-    public class UserService : IUserServices
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 

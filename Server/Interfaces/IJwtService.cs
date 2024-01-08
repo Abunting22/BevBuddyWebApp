@@ -2,7 +2,7 @@
 
 namespace BevBuddyWebApp.Server.Interfaces
 {
-    public interface IJwtServices
+    public interface IJwtService
     {
         public string GetJwt(User user);
     }

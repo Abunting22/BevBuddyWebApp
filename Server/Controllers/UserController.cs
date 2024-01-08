@@ -9,9 +9,9 @@ namespace BevBuddyWebApp.Server.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserServices _userServices;
+        private readonly IUserService _userServices;
 
-        public UserController(IUserServices userServices)
+        public UserController(IUserService userServices)
         {
             _userServices = userServices;
         }

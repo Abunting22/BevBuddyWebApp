@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BevBuddyWebApp.Server.Services
 {
-    public class JwtService : IJwtServices
+    public class JwtService : IJwtService
     {
         private readonly IConfiguration _configuration;
 

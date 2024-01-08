@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BevBuddyWebApp.Server.Services
 {
-    public class AuthService : IAuthServices
+    public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepository;
-        private readonly IJwtServices _jwtServices;
+        private readonly IJwtService _jwtServices;
         private readonly string ErrorMessage = "Invalid Username or Password";
 
-        public AuthService(IAuthRepository authRepository, IJwtServices jwtServices)
+        public AuthService(IAuthRepository authRepository, IJwtService jwtServices)
         {
             _authRepository = authRepository;
             _jwtServices = jwtServices;

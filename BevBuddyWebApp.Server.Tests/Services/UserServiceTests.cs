@@ -3,18 +3,11 @@ using BevBuddyWebApp.Server.Services;
 using BevBuddyWebApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BevBuddyWebApp.Server.Tests.Services
 {
     public class UserServiceTests
     {
-        private readonly IUserRepository _userRepositoryStub = new Mock<IUserRepository>().Object;
-
         [Fact]
         public async Task GetUserInfo_Returns_User_When_GetUserByUsernameControllerCallsMethod()
         {
